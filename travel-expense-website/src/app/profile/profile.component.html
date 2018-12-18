@@ -1,0 +1,73 @@
+<div class="container">
+  <h1 style="text-align:center">Welcome to travel-expense-website!</h1>
+  <hr>
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-3">
+      
+    </div>
+    
+    <!-- edit form column -->
+    <div class="col-md-9 personal-info">
+      
+      <h3 >General Information</h3>
+      
+      <form class="form-horizontal" role="form" [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Name:</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="text" name="name" [readonly]="!edit" value={{profileName}} id="profileName" [(ngModel)]="profileName" formControlName="profileName">
+          </div>
+          <div  class="col-lg-8">
+            <span *ngIf="f.profileName.invalid && f.profileName.errors.required" style="color: red">
+              *required
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Organizational Unit:</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="text" [readonly]="!edit" value="" [(ngModel)]="organizationalUnit" formControlName="organizationalUnit">
+          </div>
+          <div  class="col-lg-8">
+            <span *ngIf="f.organizationalUnit.invalid && f.organizationalUnit.errors.required" style="color: red">
+              *required
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Emp. No:</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="number" value="" [readonly]="!edit" [(ngModel)]="empNo" formControlName="empNo" >
+          </div>
+          <div  class="col-lg-8">
+            <span *ngIf="f.empNo.invalid && f.empNo.errors.required" style="color: red">
+              *required
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">EPF No:</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="text" value="" [readonly]="!edit" [(ngModel)]="epfNo" formControlName="epfNo">
+          </div>
+          <div  class="col-lg-8">
+            <span *ngIf="f.epfNo.invalid && f.epfNo.errors.required" style="color: red">
+              *required
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label"></label>
+          <div class="col-md-8" >
+            <button mat-raised-button color="warn" style="float:left"  (click)="cancel()" *ngIf="edit">Cancel</button>
+            <span></span>
+            <button type="submit" [disabled]="!profileForm.valid" mat-raised-button color="primary" style="float:right"  *ngIf="edit">Save Changes</button>
+            <button mat-raised-button color="primary" style="float:right" (click)="editProfile()" *ngIf="!edit">Edit Profile</button>
+          </div>
+        </div>
+      </form>
+    </div>
+</div>
+</div>
+<hr>

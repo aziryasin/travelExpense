@@ -1,0 +1,120 @@
+<div class="container">
+  <h1 style="text-align:center">Welcome to travel-expense-website!</h1>
+  <hr>
+
+
+  <!-- Login Form -->
+<div *ngIf="login" class="row">
+    <!-- left column -->
+    <div class="col-md-3">
+      
+    </div>
+    
+    <!-- edit form column -->
+    <div class="col-md-9 personal-info">
+      <form class="form-horizontal" role="form" [formGroup]="loginForm" (ngSubmit)="loginUser()">
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Username:</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="text" [(ngModel)]="username" formControlName="username">
+          </div>
+          <div  class="col-lg-8">
+            <span *ngIf="submitted && fl.username.invalid && fl.username.errors.required" style="color: red">
+              Username is required.
+            </span>
+          </div>
+          
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Password:</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="password" [(ngModel)]="password" formControlName="password">
+          </div>
+          <div class="col-lg-8">
+            <span *ngIf="submitted && fl.password.invalid && fl.password.errors.required" style="color: red">
+              Password is required.
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label"></label>
+          <div class="col-md-8" >
+            <button type="submit" mat-raised-button color="primary" style="float:right" [disabled]="!loginForm.valid" matTooltip="Login">Login</button>
+            <span></span>
+            <button mat-raised-button color="accent" style="float:left" matTooltip="New User? Register here" (click)="registerEnable()" >Register</button>
+          </div>
+        </div>
+      </form>
+    </div>
+</div>
+
+
+
+
+<!-- Register Form -->
+<div  *ngIf="register" class="row">
+  <!-- left column -->
+  <div class="col-md-3">
+    
+  </div>
+  
+  <!-- edit form column -->
+  <div class="col-md-9 personal-info">
+    <form class="form-horizontal" role="form" [formGroup]="registerForm" (ngSubmit)="registerUser()">
+      <div class="form-group">
+        <label class="col-lg-3 control-label" >Username:</label>
+        <div class="col-lg-8">
+          <input class="form-control" type="text" [(ngModel)]="username" formControlName="username"> 
+        </div>
+        <div  class="col-lg-8">
+          <span *ngIf="submitted && fr.username.invalid && fr.username.errors.required" style="color: red">
+            Username cannot be empty.
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Emp No:</label>
+        <div class="col-lg-8" >
+          <input class="form-control" type="number" [(ngModel)]="empNo" formControlName="empNo">
+        </div>
+        <div  class="col-lg-8">
+          <span *ngIf="submitted && fr.empNo.invalid && fr.empNo.errors.required" style="color: red">
+            Employee number is required.
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Password:</label>
+        <div class="col-lg-8" >
+          <input class="form-control" type="password" [(ngModel)]="password" formControlName="password">
+        </div>
+        <div  class="col-lg-8">
+          <span *ngIf="submitted && fr.password.invalid && fr.password.errors.required" style="color: red">
+            password is required.
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Confirm Password:</label>
+        <div class="col-lg-8" >
+          <input class="form-control" type="password" [(ngModel)]="password2" formControlName="password2">
+        </div>
+        <div  class="col-lg-8">
+          <span *ngIf="password!=password2" style="color: red">
+            Passwords do not match.
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-8" >
+          <button type="submit" [disabled]="!registerForm.valid || password!=password2" mat-raised-button color="primary" matTooltip="Register" style="float:right">Register</button>
+          <span></span>
+          <button mat-raised-button color="accent" matTooltip="Already a User? Login here" style="float:left" (click)="loginEnable()" >Login</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  
+</div>
+</div>

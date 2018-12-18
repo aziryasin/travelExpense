@@ -1,0 +1,138 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+body {
+    margin: 0;
+    background: #F2F2F2;
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+}
+
+h2,h6{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+cardFlex{
+    background:#873E8F
+}
+
+#container {
+   display: grid;
+   grid-template-columns: 70px auto;
+   height: 100%;
+
+   #content {
+       padding: 30px 50px;
+
+       ul {
+           list-style-type: none;
+           margin:0;padding:0;
+       
+           li {
+               background: #fff;
+               border-radius: 8px;
+               padding: 20px;
+               margin-bottom: 8px;
+       
+               a {
+                   font-size: 1.5em;
+                   text-decoration: none;
+                   font-weight: bold;
+                   color:#00A8FF;
+               }
+       
+               ul {
+                   margin-top: 20px;
+                   
+                   li {
+                       padding:0;
+       
+                       a {
+                           font-size: 1em;
+                           font-weight: 300;
+                       }
+                   }
+               }
+           }
+       }
+   }
+}
+
+.header{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    background-color: #2D2E2E;
+  }
+
+  span{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+  }
+
+  td{
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  table{
+    width: 100%;
+}
+
+
+mat-cell{
+    display:flex !important;
+    justify-content:center!important;
+    
+  }
+  
+  mat-header-cell {
+    display:flex;
+    justify-content:center;
+  }
+
+  .footer{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    background-color: #2D2E2E;
+    height: 73px;
+  }
+
+
+  #menu-outer {
+	height: 84px;
+	background: #2D2E2E
+}
+
+#tableId {
+	display: table;   /* Allow the centering to work */
+	margin: 0 auto;
+}
+
+ul#horizontal-list {
+	min-width: 696px;
+	list-style: none;
+	padding-top: 20px;
+	}
+	ul#horizontal-list li {
+		display: inline;
+	}
+
+
+  

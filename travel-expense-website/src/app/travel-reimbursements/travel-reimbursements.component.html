@@ -1,0 +1,174 @@
+<div class="container">
+    <div layout="column">
+      <mat-card>
+        <h2>Travel Expense Reimbursements</h2>
+        <h6>(To be filled after return from foreign assignment)</h6>
+      </mat-card>
+    </div>
+      <hr>
+      
+    <div class="row" *ngIf="add">
+        <!-- left column -->
+        <div class="col-md-3">
+          
+        </div>
+        
+        <!-- edit form column -->
+        <div class="col-md-9 personal-info">
+          
+          <form class="form-horizontal" role="form" [formGroup]="travelReimForm" (ngSubmit)="addTravelExpense()">
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Description:</label>
+              <div class="col-lg-8">
+                <input class="form-control" type="text" value={{travelReimDesc}} id="travelReimDesc" [(ngModel)]="travelReimDesc" formControlName="description">
+              </div>
+              <div  class="col-lg-8">
+                <span *ngIf="f.description.invalid && f.description.errors.required" style="color: red">
+                  *required
+                </span>
+              </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Transaction Date:</label>
+              <div class="col-lg-8">
+                  <input matInput [matDatepicker]="picker2" (click)="picker2.open()" [(ngModel)]="transactDateReim" formControlName="transactDate" placeholder={{transactDateReim}} class="form-control">
+                  <mat-datepicker #picker2></mat-datepicker>
+              </div>
+              <div  class="col-lg-8">
+                <span *ngIf="f.transactDate.invalid && f.transactDate.errors.required" style="color: red">
+                  *required
+                </span>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Transaction Currency:</label>
+              <div class="col-lg-8">
+                <input class="form-control" type="text" maxlength="3" value={{transactCurrencyReim}} id="transactCurrencyReim" [(ngModel)]="transactCurrencyReim" formControlName="currencyCode" (input)="$event.target.value.length == 3 && getRateLKR($event.target.value)">
+              </div>
+              <div  class="col-lg-8">
+                <span *ngIf="f.currencyCode.invalid && f.currencyCode.errors.required" style="color: red">
+                  *required
+                </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Transaction Amount:</label>
+              <div class="col-lg-8">
+                <input class="form-control" type="number" value={{transactAmountReim}} id="transactAmountReim" [(ngModel)]="transactAmountReim" formControlName="transactAmount">
+              </div>
+              <div  class="col-lg-8">
+                <span *ngIf="f.transactAmount.invalid && f.transactAmount.errors.required" style="color: red">
+                  *required
+                </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Current rate for LKR:</label>
+              <div class="col-lg-8">
+                <input class="form-control" type="text" [readonly]="true" value={{currentRateLKRReim}} id="currentRateLKRReim" [(ngModel)]="currentRateLKRReim" formControlName="currentRateLKR">
+              </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-8 control-label">Current rate for SEK: (To Enter in IFSBiz)</label>
+                <div class="col-lg-8">
+                  <input class="form-control" type="text" [readonly]="true" value={{currentRateSEKReim}} id="currentRateSEKReim" [(ngModel)]="currentRateSEKReim" formControlName="currentRateSEK">
+                </div>
+              </div>
+    
+            <div class="form-group">
+              <div class="col-md-6"  style="float:left">
+                <button mat-raised-button color="warn" (click)="cancel()">Cancel</button>
+              </div>
+              <div class="col-md-6"  style="float:right">
+                <button type="submit" [disabled]="!travelReimForm.valid" mat-raised-button color="primary">{{addBtn}}</button>
+              </div>
+            </div>
+          </form>
+          
+        </div>
+    </div>
+    <hr>
+    <br>
+    <div  >
+        <table  mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      
+          <!-- Description Column -->
+          <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef> Description </th>
+              <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+            </ng-container>
+        
+          <!-- Transaction Date Column -->
+          <ng-container matColumnDef="transactDate">
+            <th mat-header-cell *matHeaderCellDef> Transaction date </th>
+            <td mat-cell *matCellDef="let element"> {{element.transactDate | date}} </td>
+          </ng-container>
+        
+          <!--Currency Code Column -->
+          <ng-container matColumnDef="transactCurrency">
+            <th mat-header-cell *matHeaderCellDef> Transaction Currency </th>
+            <td mat-cell *matCellDef="let element"> {{element.transactCurrency}} </td>
+          </ng-container>
+        
+          <!-- Amount Column -->
+          <ng-container matColumnDef="transactAmount">
+            <th mat-header-cell *matHeaderCellDef> Transaction Amount </th>
+            <td mat-cell *matCellDef="let element"> {{element.transactAmount}} </td>
+          </ng-container>
+      
+        
+           <!-- LKR Rate Column -->
+           <ng-container matColumnDef="currentRateLKR">
+            <th mat-header-cell *matHeaderCellDef> Rate in LKR </th>
+            <td mat-cell *matCellDef="let element"> {{element.currentRateLKR}} </td>
+          </ng-container>
+
+          <!-- SEK Rate Column -->
+          <ng-container matColumnDef="currentRateSEK">
+              <th mat-header-cell *matHeaderCellDef> Rate in SEK </th>
+              <td mat-cell *matCellDef="let element"> {{element.currentRateSEK}} </td>
+            </ng-container>
+      
+      
+          <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef> Edit </th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-mini-fab color="accent" (click)="enableEdit(row)"><mat-icon >edit</mat-icon></button>
+        </ng-container> 
+
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef> Delete </th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-mini-fab color="warn" (click)="deleteTravelExpense(row)"><mat-icon >delete</mat-icon></button>
+        </ng-container> 
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <hr>
+        <div style="float: left">
+        <button mat-raised-button color="primary" (click)="addValue()"><mat-icon>add</mat-icon><span> Add a record</span></button>
+      </div>
+        <div style="float:right">
+          <button mat-raised-button color="primary" matTooltip="Generate and Download the final report"   (click)="generateReportFinal()"><mat-icon>get_app</mat-icon>  Download Final Report </button>
+        </div>
+      </div>
+    <br/>
+    <br/>
+    </div>
+    <hr>
+    <div class="row footer">
+        <ul class="pagination">
+            <li class="page-item " style="background-color:#2D2E2F; "><a matTooltip="General Information of the Trip" mdbWavesEffect [routerLink]="['/newTrip']" style="font-family: 'Montserrat', sans-serif; font-size: 13px;
+                text-align: center; " >General Information</a></li>
+            <li class="page-item " style="background-color:#2D2E2F"><a matTooltip="Travel Information" mdbWavesEffect [routerLink]="['/newTrip/travelInfo']" style="font-family: 'Montserrat', sans-serif; font-size: 13px;
+                text-align: center; ">Travel Information</a></li>
+            <li class="page-item" style="background-color:#2D2E2F"><a matTooltip="Advances Given"  mdbWavesEffect [routerLink]="['/newTrip/advancesGiven']" style="font-family: 'Montserrat', sans-serif; font-size: 13px;
+                text-align: center; ">Advances Given</a></li>
+            <li class="page-item " style="background-color:#2D2E2F"><a matTooltip="Travel costs prior to departure"  mdbWavesEffect [routerLink]="['/newTrip/travelCosts']" style="font-family: 'Montserrat', sans-serif; font-size: 13px;
+                text-align: center; ">Travel Costs</a></li>
+            <li class="page-item" style="background-color:#2D2E2F"><a matTooltip="Travel Expense Reimbursements"  mdbWavesEffect [routerLink]="['/newTrip/reimbursements']" style="font-family: 'Montserrat', sans-serif; font-size: 13px;
+                text-align: center; color:red">Expense Reimbursements</a></li>
+        </ul>
+    </div>

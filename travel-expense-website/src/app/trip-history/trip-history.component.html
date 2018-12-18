@@ -1,0 +1,74 @@
+<div class="container">
+    <div layout="column">
+      <mat-card>
+        <h2>Your Trip History</h2>
+      </mat-card>
+    </div>
+      <hr>
+      <div>
+          <table  mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+        
+            <!-- Projects Column -->
+            <ng-container matColumnDef="projects">
+                <th mat-header-cell *matHeaderCellDef> Projects </th>
+                <td mat-cell *matCellDef="let element"> {{element.tripGeneralInfo.projectNames}} </td>
+              </ng-container>
+          
+          
+          
+            <!--Cost Center Column -->
+            <ng-container matColumnDef="costCenter">
+              <th mat-header-cell *matHeaderCellDef> Cost Center </th>
+              <td mat-cell *matCellDef="let element"> {{element.tripGeneralInfo.costCenter}} </td>
+            </ng-container>
+          
+            <!-- Start Date Column -->
+            <ng-container matColumnDef="startDate">
+              <th mat-header-cell *matHeaderCellDef> Start Date </th>
+              <td mat-cell *matCellDef="let element"> {{element.tripGeneralInfo.startDate | date}} </td>
+            </ng-container>
+        
+          
+             <!--End Date Column -->
+             <ng-container matColumnDef="endDate">
+              <th mat-header-cell *matHeaderCellDef> End Date </th>
+              <td mat-cell *matCellDef="let element"> {{element.tripGeneralInfo.endDate | date}} </td>
+             </ng-container>
+        
+            
+
+          <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef> Edit </th>
+            <td mat-cell *matCellDef="let row">
+                 <button mat-mini-fab color="accent" (click)="editTrip(row)" [routerLink]="['/newTrip']"><mat-icon >edit</mat-icon></button> 
+        </ng-container> 
+
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef> Delete </th>
+          <td mat-cell *matCellDef="let row">
+               <button mat-mini-fab color="warn" (click)="deleteTrip(row)"><mat-icon >delete</mat-icon></button> 
+      </ng-container> 
+
+      <ng-container matColumnDef="duplicate">
+        <th mat-header-cell *matHeaderCellDef> Duplicate </th>
+        <td mat-cell *matCellDef="let row">
+             <button mat-mini-fab color="primary" (click)="duplicateTrip(row)"><mat-icon >file_copy</mat-icon></button> 
+    </ng-container>
+
+    <ng-container matColumnDef="download">
+      <th mat-header-cell *matHeaderCellDef> Download </th>
+      <td mat-cell *matCellDef="let row">
+           <button mat-mini-fab color="primary" (click)="downloadTrip(row)"><mat-icon >get_app</mat-icon></button> 
+  </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row  *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <hr>
+
+          <button mat-raised-button color="primary"[routerLink]="['/newTrip']" (click)="startTrip()" ><mat-icon>add</mat-icon><span> Add a new trip</span></button>
+          
+        </div>
+    <br/>
+          <br/>
+    </div>

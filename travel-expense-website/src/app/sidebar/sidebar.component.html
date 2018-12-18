@@ -1,0 +1,20 @@
+<nav *ngIf="this.user.getUserLoggedIn()">
+  <ul>
+    <li >
+      <a routerLink="profile">
+        <i class="material-icons" matTooltip="View profile">perm_identity</i>
+      </a>
+    </li>
+    
+    <li>
+      <a routerLink="tripHistory">
+        <i class="material-icons" matTooltip="Trips">history</i>
+      </a>
+    </li>
+    <li>
+      <a class="button">
+        <i class="material-icons" matTooltip="Logout" (click)="logout()">logout</i>
+      </a>
+    </li>
+  </ul>
+</nav>

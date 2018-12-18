@@ -1,0 +1,103 @@
+<div class="container">
+    <div layout="column">
+        <mat-card class="cardFlex">
+          <h2>General Information of the Trip</h2>
+        </mat-card>
+      </div>
+  
+  
+  <hr>
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-3">
+      
+    </div>
+    
+    <!-- edit form column -->
+    <div class="col-md-9 personal-info">
+      
+      
+      <form class="form-horizontal" role="form" [formGroup]="newTripForm" (ngSubmit)="editGeneralInfo()">
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Project Name(s):</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="text" value={{projects}} id="projects" [(ngModel)]="projects" formControlName="projectNames">
+          </div>
+          <div  class="col-lg-8">
+            <span *ngIf="f.projectNames.invalid && f.projectNames.errors.required" style="color: red">
+              *required
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Project ID(s):</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="text" value={{projectIds}} id="projectIds" [(ngModel)]="projectIds" formControlName="projectIds">
+          </div>
+          <div  class="col-lg-8">
+            <span *ngIf="f.projectIds.invalid && f.projectIds.errors.required" style="color: red">
+              *required
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Cost Center:</label>
+          <div class="col-lg-8">
+            <kendo-combobox class="form-control" [data]="listItems" [allowCustom]="allowCustom" value={{costCenter}} id="costCenter" [(ngModel)]="costCenter" formControlName="costCenter">
+            </kendo-combobox>
+          </div>
+          <div  class="col-lg-8">
+            <span *ngIf="f.costCenter.invalid && f.costCenter.errors.required" style="color: red">
+              *required
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Start Date:</label>
+          <div class="col-lg-8">
+              <input matInput [matDatepicker]="picker" (click)="picker.open()" [(ngModel)]="startDate" formControlName="startDate" placeholder={{startDate}} class="form-control" >
+              <mat-datepicker #picker></mat-datepicker>
+          </div>
+          <div  class="col-lg-8">
+            <span *ngIf="f.startDate.invalid && f.startDate.errors.required" style="color: red">
+              *required
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">End Date:</label>
+          <div class="col-lg-8">
+              <input matInput [matDatepicker]="picker2" (click)="picker2.open()" [(ngModel)]="endDate" formControlName="endDate" placeholder={{endDate}} class="form-control" >
+              <mat-datepicker #picker2></mat-datepicker>
+          </div>
+          <div  class="col-lg-8">
+            <span *ngIf="f.endDate.invalid && f.endDate.errors.required" style="color: red">
+              *required
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label"></label>
+          <div class="col-md-8"  >
+            <button type="submit" mat-raised-button color="primary" [disabled]="!newTripForm.valid" style="float:right">Save</button>
+            <button mat-raised-button color="primary" [disabled]="!saved" [routerLink]="['travelInfo']" style="float:left">Next <mat-icon>chevron_right</mat-icon></button>
+          </div>
+        </div>
+      </form>
+    </div>
+</div>
+</div>
+<div class="row footer">
+    <ul class="pagination">
+        <li class="page-item " style="background-color:#2D2E2F; "><a matTooltip="General Information of the Trip" mdbWavesEffect [routerLink]="['/newTrip']" style="font-family: 'Montserrat', sans-serif; font-size: 13px;
+            text-align: center; color:red" >General Information</a></li>
+        <li class="page-item " style="background-color:#2D2E2F"><a matTooltip="Travel Information" mdbWavesEffect [routerLink]="['/newTrip/travelInfo']" style="font-family: 'Montserrat', sans-serif; font-size: 13px;
+            text-align: center;">Travel Information</a></li>
+        <li class="page-item" style="background-color:#2D2E2F"><a matTooltip="Advances Given"  mdbWavesEffect [routerLink]="['/newTrip/advancesGiven']" style="font-family: 'Montserrat', sans-serif; font-size: 13px;
+            text-align: center;">Advances Given</a></li>
+        <li class="page-item " style="background-color:#2D2E2F"><a matTooltip="Travel costs prior to departure"  mdbWavesEffect [routerLink]="['/newTrip/travelCosts']" style="font-family: 'Montserrat', sans-serif; font-size: 13px;
+            text-align: center;">Travel Costs</a></li>
+        <li class="page-item" style="background-color:#2D2E2F"><a matTooltip="Travel Expense Reimbursements"  mdbWavesEffect [routerLink]="['/newTrip/reimbursements']" style="font-family: 'Montserrat', sans-serif; font-size: 13px;
+            text-align: center;">Expense Reimbursements</a></li>
+    </ul>
+</div>
