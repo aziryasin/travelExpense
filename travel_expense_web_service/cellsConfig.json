@@ -1,0 +1,46 @@
+{
+  "generalInfo": {
+    "nameCell": [4,1],
+    "empNoCell": [4,5],
+    "epfNoCell": [5,5],
+    "orgCell": [5,1]
+  },
+  "tripInfo": {
+    "projectNamesCell": [6,1],
+    "projectIdsCell": [6,5],
+    "costCenterCell": [7,1],
+    "startDateCell": [9,2],
+    "endDateCell": [9,5]
+  },
+  "travelInfo":{
+    "purposeCell":[14,0],
+    "countryCell":[14,1],
+    "daysCell":[14,2],
+    "currencyCodeCell":[14,3],
+    "dailyAllowanceCell":[14,4],
+    "currentRateLKRCell":[14,5],
+    "currentRateSEKCell":[14,6]
+  },
+  "advancesGiven":{
+    "transactDateCell":[20,1],
+    "transactCurrencyCell":[20,2],
+    "transactAmountCell":[20,3],
+    "currentRateLKRCell":[20,4]
+  },
+  "travelCosts":{
+    "descriptionCell":[27,0],
+    "transactDateCell":[27,1],
+    "transactCurrencyCell":[27,2],
+    "transactAmountCell":[27,3],
+    "currentRateLKRCell":[27,4],
+    "currentRateSEKCell":[27,6]
+  },
+  "reimbursements":{
+    "descriptionCell":[33,0],
+    "transactDateCell":[33,1],
+    "transactCurrencyCell":[33,2],
+    "transactAmountCell":[33,3],
+    "currentRateLKRCell":[33,4],
+    "currentRateSEKCell":[33,6]
+  }
+}
