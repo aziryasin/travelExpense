@@ -29,16 +29,6 @@ public class CurrencyController {
 
     @RequestMapping(value = "/convertSEK" , method = RequestMethod.GET)
     public SEKRateResponse getSEKrate(@RequestParam("currencyCode") String currencyCode,@RequestParam("date") String date){
-        if(date.isEmpty()){
-            // Input
-                Date dat1 = new Date(System.currentTimeMillis());
-
-                // Conversion
-                SimpleDateFormat sdf;
-                sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-                sdf.setTimeZone(TimeZone.getTimeZone("CET"));
-                date = sdf.format(dat1);
-        }
         return seKrateService.getSEKrate(currencyCode,date);
     }
 }

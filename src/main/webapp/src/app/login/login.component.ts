@@ -74,6 +74,7 @@ export class LoginComponent implements OnInit {
             this.user.setUserLoggedIn(true);
             localStorage.setItem('empNo',data.object.empNo);
             localStorage.setItem('name',data.object.employeeName);
+            localStorage.setItem('startDate',new Date().toISOString())
             this.router.navigate(['tripHistory']);
           }else{
             alert("Login Failed. Check your credentials");
